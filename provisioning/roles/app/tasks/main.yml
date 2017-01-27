@@ -1,0 +1,19 @@
+---
+  - name: creating application docker image
+    docker_image:
+      path: /vagrant/provisioning/roles/app/files
+      name: app
+    register: appcreated
+
+  - name: starting GO app container
+    when: appcreated|success
+    docker_container:
+      name: goapp
+      image: app
+      state: started
+      ports:
+        - "{{ app_port }}:{{ app_port }}"
+      networks:
+        - name: "{{ network }}"
+          ipv4_address: "{{ app_ip }}"
+

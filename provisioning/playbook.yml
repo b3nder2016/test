@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+
+  vars:
+    bridgenet: net0
+    network: TestingNet
+    subnet: '172.1.1.0/24'
+    gateway: 172.1.1.1
+
+    mysql_ip: 172.1.1.2
+    mysql_port: 3306
+
+    consul_ip: 172.1.1.3
+    consul_port: 8500
+
+    app_ip: 172.1.1.4
+    app_port: 80
+
+  roles:
+  - docker
+  - consul
+  - mysql
+  - app

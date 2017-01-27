@@ -1,0 +1,14 @@
+---
+ - apt: update_cache=yes cache_valid_time=3600
+ - apt: name=docker.io state=present
+ - apt: name=python-pip state=present
+ - command: pip install docker-py
+
+ - name: creating a network for docker containers
+   docker_network:
+     name: "{{ network }}"
+     driver_options:
+       com.docker.network.bridge.name: "{{ bridgenet }}"
+     ipam_options:
+       subnet: "{{ subnet }}"
+       gateway: "{{ gateway }}"
