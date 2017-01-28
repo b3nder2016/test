@@ -1,4 +1,4 @@
-This project is a integration test of Go app, mysql db and consul key-value storage. 
+This project is an integration test of Go app, mysql db and consul key-value storage.
 
 To run the test please issue the following in this directory:
 
